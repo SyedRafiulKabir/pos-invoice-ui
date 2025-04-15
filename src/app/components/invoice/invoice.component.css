@@ -36,6 +36,7 @@ input[readonly] {
 
 table {
     width: 100%;
+    table-layout: fixed; /* prevents expanding */
     border-collapse: collapse;
     background: #fff;
     margin-bottom: 16px;
@@ -45,10 +46,17 @@ th, td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: center;
+    word-wrap: break-word;
 }
 
 th {
     background: #f0f0f0;
+}
+
+td input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
 }
 
 button {

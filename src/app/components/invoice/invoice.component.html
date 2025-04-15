@@ -48,8 +48,8 @@
                 <th>Item Name</th>
                 <th>Quantity</th>
                 <th>Rate</th>
-                <th>Discount</th>
-                <th>VAT</th>
+                <th>Discount (%)</th>
+                <th>VAT (%)</th>
                 <th>Amount</th>
             </tr>
         </thead>
@@ -67,13 +67,16 @@
 
     <!-- Totals -->
     <div class="mb-4">
-        <p>Total: {{ total }}</p>
+        <p>Subtotal: {{ total }}</p> 
         <p>VAT: {{ totalVat }}</p>
+        <p><strong>Grand Total: {{ grandTotal }}</strong></p>
         <p>
             Paid Amount:
             <input type="number" [(ngModel)]="paidAmount" (input)="calculateReturn()" />
         </p>
-        <p>Return: {{ returnAmount }}</p>
+        <p *ngIf="paidAmount >= grandTotal">Return: {{ (paidAmount - grandTotal) | number:'1.2-2' }}</p>
+        <p *ngIf="paidAmount < grandTotal">Due: {{ (grandTotal - paidAmount) | number:'1.2-2' }}</p>
+
     </div>
 
     <!-- Buttons -->
